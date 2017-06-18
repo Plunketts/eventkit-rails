@@ -20,4 +20,18 @@ EventKit.HomeRoute = Em.Route.extend EventKit.ResetScroll, {
 				since: yesterday
 			})
 		})
+
+	actions: () ->
+		deleteEvents = () ->
+			@store.findAll('event').then(
+				(record) ->
+					record.content.forEach(
+						(rec) ->
+							Ember.run.once(this, () ->
+								rec.deleteRecord()
+								rec.save()
+							)
+						this
+					)
+				)
 }
