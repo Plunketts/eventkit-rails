@@ -34,4 +34,5 @@ EventKit.HomeRoute = Em.Route.extend EventKit.ResetScroll, {
 						this
 					)
 				)
+			return
 }
