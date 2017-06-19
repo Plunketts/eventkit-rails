@@ -213,7 +213,7 @@ class Api::V1::UsersController < ApplicationController
 			render json: {
 				:message => :error,
 				:error => "User name or password was incorrect."
-			}, :status => 401
+			}
 		end
 	end
 
