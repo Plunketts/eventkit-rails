@@ -6,7 +6,10 @@ EventKit::Application.routes.draw do
 	namespace :api do
 		namespace :v1 do
 			# Events
+			post 'events/delete_all'
+      get 'events/all'
 			resources :events
+
 
 			# Settings
 			resources :settings

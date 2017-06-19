@@ -199,6 +199,21 @@ class Api::V1::EventsController < ApplicationController
 		end
 	end
 
+	def all
+		self.user_has_permissions(Permissions::VIEW) do
+			offset = params[:offset] || 0
+			limit = 500
+			events = Event.all.limit(limit).order(:id).offset(offset).entries
+			render json: {
+				:message => "Returned #{events.count} event records",
+				:status => 'success',
+				:events => events,
+				:count => events.count,
+				:total => Event.all.count
+			}
+		end
+	end
+
 	private
 	def event_params(params)
 		params.require(:event).permit(:timestamp, :event, :email, :"smtp-id", :sg_event_id, :sg_message_id, :category, :newsletter, :response, :reason, :ip, :useragent, :attempt, :status, :type, :url, :additional_arguments, :event_post_timestamp, :raw, :asm_group_id)
