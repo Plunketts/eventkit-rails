@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	end
 
 	def renew_expiration
-		days = 7
+		days = 21
 		now = Time.now.to_i
 		self.token_expires = now + (days * 24 * 60 * 60)
 		self.save

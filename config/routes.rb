@@ -15,6 +15,8 @@ EventKit::Application.routes.draw do
 			resources :settings
 
 			# Users
+
+      post 'users/get_token'
 			resources :users
 		end
 	end

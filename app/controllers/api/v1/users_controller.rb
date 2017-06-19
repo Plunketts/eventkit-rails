@@ -199,6 +199,24 @@ class Api::V1::UsersController < ApplicationController
 		end
 	end
 
+	def get_token
+		user_name = params[:user_name]
+		password = params[:password]
+		user = User.where(user_name: user_name, password: password).first
+		if user
+			user.issue_token
+			render json: {
+				:message => :success,
+				:token => user.token
+			}
+		else
+			render json: {
+				:message => :error,
+				:error => "User name or password was incorrect."
+			}, :status => 401
+		end
+	end
+
 	private
 	def user_params(params)
 		params.require(:user).permit(:username, :password, :permissions)
