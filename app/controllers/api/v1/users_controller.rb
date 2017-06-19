@@ -202,7 +202,7 @@ class Api::V1::UsersController < ApplicationController
 	def get_token
 		user_name = params[:user_name]
 		password = params[:password]
-		user = User.where(user_name: user_name, password: password).first
+		user = User.where(username: user_name, password: password).first
 		if user
 			user.issue_token
 			render json: {
