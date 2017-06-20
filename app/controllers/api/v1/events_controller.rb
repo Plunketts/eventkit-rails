@@ -214,6 +214,18 @@ class Api::V1::EventsController < ApplicationController
 		end
 	end
 
+	def delete_all
+		self.user_has_permissions(Permissions::EDIT) do
+			max_count = params[:max_count]
+			Event.all.order(:id).limit(max_count).destroy_all
+
+			render json: {
+				:status => 'success',
+				:message => "Successfully deleted #{max_count} event records."
+			}
+		end
+	end
+
 	private
 	def event_params(params)
 		params.require(:event).permit(:timestamp, :event, :email, :"smtp-id", :sg_event_id, :sg_message_id, :category, :newsletter, :response, :reason, :ip, :useragent, :attempt, :status, :type, :url, :additional_arguments, :event_post_timestamp, :raw, :asm_group_id)
