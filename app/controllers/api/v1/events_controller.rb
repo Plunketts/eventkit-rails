@@ -209,6 +209,7 @@ class Api::V1::EventsController < ApplicationController
 				:status => 'success',
 				:events => events,
 				:count => events.count,
+				:offset => offset,
 				:total => Event.all.count
 			}
 		end
