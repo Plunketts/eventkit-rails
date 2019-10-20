@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141014135702) do
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.integer  "timestamp",            limit: 8
     t.text     "event"
     t.text     "email"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141014135702) do
     t.integer  "asm_group_id",         limit: 2
   end
 
-  create_table "settings", force: true do |t|
+  create_table "settings", force: :cascade do |t|
     t.string   "name"
     t.text     "value"
     t.integer  "visible"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141014135702) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.integer  "permissions",   default: 1
     t.string   "token"
     t.integer  "token_expires", default: 0
