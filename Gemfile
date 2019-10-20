@@ -16,7 +16,7 @@ group :production do
 end
 
 gem 'unicorn'
-gem 'json'
+gem 'json', '1.8.6'
 gem 'bourbon'
 gem 'rails', '4.0.8'
 gem 'sass-rails', '~> 4.0.2'
